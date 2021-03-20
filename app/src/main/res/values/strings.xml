@@ -8,4 +8,8 @@
     <string name="text_sub_intro_2">Categorizando seus lançamentos e vendo o destino de cada centavo</string>
     <string name="text_sub_intro_3">Receba alertas quando quiser</string>
     <string name="text_sub_intro_4">Use no seu smartphone e acessando pelo site</string>
+    <string name="text_register_title">Crie sua conta grátis</string>
+    <string name="text_register_sub">Junte-se a meio milhão de pessoas e comece já</string>
+    <string name="button_cadastre_se">Cadastre-se</string>
+    <string name="text_register">Já tenho conta</string>
 </resources>
