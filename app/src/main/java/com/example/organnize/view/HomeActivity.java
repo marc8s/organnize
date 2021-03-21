@@ -1,5 +1,6 @@
 package com.example.organnize.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,6 +31,10 @@ public class HomeActivity extends AppCompatActivity {
             }
         });*/
     }
-    public void addRecipe(View view){}
-    public void addExpense(View view){}
+    public void addRecipe(View view){
+        startActivity(new Intent(this, RecipesActivity.class));
+    }
+    public void addExpense(View view){
+        startActivity(new Intent(this, ExpensesActivity.class));
+    }
 }

@@ -9,10 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Organnize">
+        <activity android:name=".view.ExpensesActivity"
+            android:theme="@style/expenseTheme"></activity>
+        <activity android:name=".view.RecipesActivity"
+            android:theme="@style/recipeTheme"/>
         <activity
             android:name=".view.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/Theme.Organnize.NoActionBar"></activity>
+            android:theme="@style/Theme.Organnize.NoActionBar" />
         <activity android:name=".view.RegisterActivity" />
         <activity android:name=".view.LoginActivity" />
         <activity

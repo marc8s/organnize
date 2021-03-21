@@ -2,7 +2,7 @@
 
 # # DOING
 
-11) Interface de receitas e despesas
+Interface de receitas e despesas
 
 ## TODO
 
@@ -19,3 +19,4 @@ Personalizar interface Home
 8) Criação da activity home
 9) Verificar se usuário esta logado e direcionar para home caso sim
 10) Inclusão da biblioteca Floating action menu (https://github.com/Clans/FloatingActionButton)
+11) Aplicação de tema na interface de despesas e de receitas
