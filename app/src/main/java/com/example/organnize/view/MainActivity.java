@@ -13,9 +13,6 @@ import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
 
 public class MainActivity extends IntroActivity {
 
-    /*private Button buttonRegister;
-    private TextView textViewLogin;*/
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,31 +46,6 @@ public class MainActivity extends IntroActivity {
                 .canGoForward(false)
                 .build()
         );
-
-        /*buttonRegister = findViewById(R.id.button_cadastre_se);
-        textViewLogin = findViewById(R.id.textView_register);
-
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(
-                        getApplicationContext(),
-                        "registrar",
-                        Toast.LENGTH_LONG
-                ).show();
-            }
-        });
-
-        textViewLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(
-                        getApplicationContext(),
-                        "logar",
-                        Toast.LENGTH_LONG
-                ).show();
-            }
-        });*/
 
     }
 
