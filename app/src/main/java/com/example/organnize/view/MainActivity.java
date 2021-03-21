@@ -20,7 +20,7 @@ public class MainActivity extends IntroActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        verifyUserLogged();
+
         //remove butões back e next dos slides
         setButtonBackVisible(false);
         setButtonNextVisible(false);
@@ -52,6 +52,12 @@ public class MainActivity extends IntroActivity {
                 .build()
         );
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        verifyUserLogged();
     }
 
     public void btRegister(View view){
