@@ -1,4 +1,4 @@
-# organnize
+# ORGANIZZE
 
 # # DOING
 
@@ -11,3 +11,4 @@
 4) Interface de cadastro/login
 5) Cadastro de usuário utilizando Firebase
 6) Tratamento de exceções de cadastro de usuário
+7) Validar e autenticar usuário
