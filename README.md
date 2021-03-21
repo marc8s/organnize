@@ -2,7 +2,9 @@
 
 # # DOING
 
-8) Criação da activity home
+## TODO
+
+Personalizar interface Home
 
 # # DONE
 1) Configuração do Firebase (realtime database e authentication)
@@ -12,3 +14,5 @@
 5) Cadastro de usuário utilizando Firebase
 6) Tratamento de exceções de cadastro de usuário
 7) Validar e autenticar usuário
+8) Criação da activity home
+9) Verificar se usuário esta logado e direcionar para home caso sim

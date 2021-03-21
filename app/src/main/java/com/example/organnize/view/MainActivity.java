@@ -8,14 +8,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.organnize.R;
+import com.example.organnize.config.ConfigFirebase;
+import com.google.firebase.auth.FirebaseAuth;
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
 
 public class MainActivity extends IntroActivity {
 
+    private FirebaseAuth mAuthentication;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        verifyUserLogged();
         //remove butões back e next dos slides
         setButtonBackVisible(false);
         setButtonNextVisible(false);
@@ -55,6 +60,17 @@ public class MainActivity extends IntroActivity {
 
     public void btLogin(View view){
         startActivity(new Intent(this, LoginActivity.class));
+    }
+
+    public void verifyUserLogged(){
+        mAuthentication = ConfigFirebase.getFirebaseAuthentication();
+        if(mAuthentication.getCurrentUser() != null){
+            openHome();
+        }
+    }
+
+    public void openHome(){
+        startActivity(new Intent(this, HomeActivity.class));
     }
 
 }

@@ -78,9 +78,10 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(RegisterActivity.this,
-                            "Sucesso ao cadastrar usuário!",
-                            Toast.LENGTH_SHORT).show();
+                    /*fecha tela de login e volta pra intro_register
+                    onde havera uma validação na Main.Activity
+                    */
+                    finish();
                 }else{
                     String exception = "";
                     try{
