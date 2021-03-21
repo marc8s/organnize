@@ -12,4 +12,11 @@
     <string name="text_register_sub">Junte-se a meio milhão de pessoas e comece já</string>
     <string name="button_cadastre_se">Cadastre-se</string>
     <string name="text_register">Já tenho conta</string>
+    <string name="name">Nome</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="termos">Termos de uso</string>
+    <string name="text_access">Acesse sua conta</string>
+    <string name="button_login">Entrar</string>
 </resources>
