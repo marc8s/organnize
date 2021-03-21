@@ -9,3 +9,4 @@
 2) Configuração do material intro (https://github.com/heinrichreimer/material-intro)
 3) Inclusão dos Fragment Sliders iniciais
 4) Interface de cadastro/login
+5) Cadastro de usuário utilizando Firebase
