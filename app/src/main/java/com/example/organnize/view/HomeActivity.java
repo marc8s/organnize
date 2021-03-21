@@ -30,4 +30,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });*/
     }
+    public void addRecipe(View view){}
+    public void addExpense(View view){}
 }

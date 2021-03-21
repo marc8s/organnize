@@ -2,7 +2,7 @@
 
 # # DOING
 
-11) Personalização do floatin action menu
+11) Interface de receitas e despesas
 
 ## TODO
 
