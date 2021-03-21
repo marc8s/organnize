@@ -2,7 +2,7 @@
 
 # # DOING
 
-
+8) Criação da activity home
 
 # # DONE
 1) Configuração do Firebase (realtime database e authentication)
