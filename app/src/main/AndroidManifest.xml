@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Organnize">
         <activity android:name=".view.ExpensesActivity"
-            android:theme="@style/expenseTheme"></activity>
+            android:theme="@style/expenseTheme"/>
         <activity android:name=".view.RecipesActivity"
             android:theme="@style/recipeTheme"/>
         <activity

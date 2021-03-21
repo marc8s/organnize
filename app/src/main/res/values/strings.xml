@@ -20,6 +20,12 @@
     <string name="text_access">Acesse sua conta</string>
     <string name="button_login">Entrar</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="date">Data</string>
+    <string name="category">Categoria</string>
+    <string name="description">Descrição</string>
+    <string name="zero">€ 00,00</string>
+    <string name="salary">Ordenado</string>
+    <string name="salary_month">Ordenado mensal</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
