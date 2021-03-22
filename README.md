@@ -1,6 +1,9 @@
 # ORGANIZZE
 
+Uma aplicação que organiza as movimentações financeiras usando como base as receitas e despesas para determinar o saldo do usuário.
+
 # # DOING
+
 
 
 
@@ -21,3 +24,5 @@ Personalizar interface Home
 10) Inclusão da biblioteca Floating action menu (https://github.com/Clans/FloatingActionButton)
 11) Aplicação de tema na interface de despesas e de receitas
 12) Interface de receitas e despesas
+13) Criação da classe Base64Custom para tratar do encode e decode dos emails do usuário a serem salvos como id no firebase
+14) Salvar usuários no firebase - Utilizando Base64 format para salvar email do usuario como id no firebase

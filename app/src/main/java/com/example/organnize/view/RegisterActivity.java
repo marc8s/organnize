@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.organnize.R;
 import com.example.organnize.config.ConfigFirebase;
+import com.example.organnize.helper.Base64Custom;
 import com.example.organnize.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -78,6 +79,9 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    String idUser = Base64Custom.encodeBase64(mUser.getEmail());
+                    mUser.setId(idUser);
+                    mUser.save();
                     /*fecha tela de login e volta pra intro_register
                     onde havera uma validação na Main.Activity
                     */
