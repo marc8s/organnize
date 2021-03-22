@@ -6,6 +6,8 @@ import com.google.firebase.database.Exclude;
 
 public class User {
     private String name, email, password, id;
+    private Double recipeTotal = 0.00;
+    private Double expenseTotal = 0.00;
 
     public User() {
     }
@@ -15,6 +17,22 @@ public class User {
         mReferenceFirebase.child("user")
                 .child(this.id)
                 .setValue(this);
+    }
+
+    public Double getRecipeTotal() {
+        return recipeTotal;
+    }
+
+    public void setRecipeTotal(Double recipeTotal) {
+        this.recipeTotal = recipeTotal;
+    }
+
+    public Double getExpenseTotal() {
+        return expenseTotal;
+    }
+
+    public void setExpenseTotal(Double expenseTotal) {
+        this.expenseTotal = expenseTotal;
     }
 
     public String getName() {

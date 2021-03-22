@@ -2,16 +2,14 @@
 
 Uma aplicação que organiza as movimentações financeiras usando como base as receitas e despesas para determinar o saldo do usuário.
 
-# # DOING
+# DOING
+Criação da classe DateCustom para exibir data atual como predefinição ao criar nova receita ou despesa
 
-
-
-
-## TODO
+# TODO
 
 Personalizar interface Home
 
-# # DONE
+# DONE
 1) Configuração do Firebase (realtime database e authentication)
 2) Inclusão da biblioteca material intro (https://github.com/heinrichreimer/material-intro)
 3) Inclusão dos Fragment Sliders iniciais
