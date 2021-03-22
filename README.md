@@ -3,7 +3,8 @@
 Uma aplicação que organiza as movimentações financeiras usando como base as receitas e despesas para determinar o saldo do usuário.
 
 # DOING
-Criação da classe DateCustom para exibir data atual como predefinição ao criar nova receita ou despesa
+
+Criação de estrutura para separar as movimentações por mês
 
 # TODO
 
@@ -24,3 +25,5 @@ Personalizar interface Home
 12) Interface de receitas e despesas
 13) Criação da classe Base64Custom para tratar do encode e decode dos emails do usuário a serem salvos como id no firebase
 14) Salvar usuários no firebase - Utilizando Base64 format para salvar email do usuario como id no firebase
+15) Criação da classe DateCustom para exibir data atual como predefinição ao criar nova receita ou despesa
+16) Criação da classe transaction para salvar as transações no firebase - transações separas por id e por mês
