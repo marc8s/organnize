@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.organnize.R;
 import com.example.organnize.helper.DateCustom;
@@ -29,13 +30,56 @@ public class ExpensesActivity extends AppCompatActivity {
     }
 
     public void saveExpense(View view){
-        mTransaction = new Transaction();
-        mTransaction.setmValue(Double.parseDouble(mCampValue.getText().toString()));
-        mTransaction.setmCategory(mCampCategory.getText().toString());
-        mTransaction.setmDescription(mCampDescription.getText().toString());
-        mTransaction.setmDate(mCampDate.getText().toString());
-        //e de expense
-        mTransaction.setmType("e");
-        mTransaction.save();
+        if(validateCamps()){
+            mTransaction = new Transaction();
+            mTransaction.setmValue(Double.parseDouble(mCampValue.getText().toString()));
+            mTransaction.setmCategory(mCampCategory.getText().toString());
+            mTransaction.setmDescription(mCampDescription.getText().toString());
+            mTransaction.setmDate(mCampDate.getText().toString());
+            //e de expense
+            mTransaction.setmType("e");
+            mTransaction.save();
+        }
+
+    }
+
+    public Boolean validateCamps(){
+        String textValue = mCampValue.getText().toString();
+        String textDate = mCampDate.getText().toString();
+        String textCategory = mCampCategory.getText().toString();
+        String textDescription = mCampDescription.getText().toString();
+        if(!textValue.isEmpty()){
+            if(!textDate.isEmpty()){
+                if(!textCategory.isEmpty()){
+                    if(!textDescription.isEmpty()){
+                        return true;
+                    }else{
+                        Toast.makeText(ExpensesActivity.this,
+                                "O campo descrição não foi preenchido!",
+                                Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+
+                }else{
+                    Toast.makeText(ExpensesActivity.this,
+                            "O campo categoria não foi preenchido!",
+                            Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+
+            }else{
+                Toast.makeText(ExpensesActivity.this,
+                        "O campo data não foi preenchido!",
+                        Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+        }else{
+            Toast.makeText(ExpensesActivity.this,
+                    "O campo valor não foi preenchido!",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
     }
 }

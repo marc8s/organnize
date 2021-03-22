@@ -4,7 +4,8 @@ Uma aplicação que organiza as movimentações financeiras usando como base as 
 
 # DOING
 
-Criação de estrutura para separar as movimentações por mês
+
+Atualizar valores totais das transações mediante novas adições
 
 # TODO
 
@@ -27,3 +28,4 @@ Personalizar interface Home
 14) Salvar usuários no firebase - Utilizando Base64 format para salvar email do usuario como id no firebase
 15) Criação da classe DateCustom para exibir data atual como predefinição ao criar nova receita ou despesa
 16) Criação da classe transaction para salvar as transações no firebase - transações separas por id e por mês
+17) Validar preenchimento de campos das despesas
