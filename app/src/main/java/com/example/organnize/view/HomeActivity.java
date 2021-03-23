@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.organnize.config.ConfigFirebase;
+import com.example.organnize.helper.Base64Custom;
+import com.example.organnize.model.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -18,15 +20,25 @@ import android.widget.TextView;
 
 import com.example.organnize.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
+
+import java.text.DecimalFormat;
 
 public class HomeActivity extends AppCompatActivity {
 
     private MaterialCalendarView mCalendarView;
     private TextView mTextSalutation, mTextValueBalance;
-    private FirebaseAuth mAuthentication;
+    private FirebaseAuth mAuthentication = ConfigFirebase.getFirebaseAuthentication();
+    private DatabaseReference mReferenceFirebase = ConfigFirebase.getFirebaseDatabase();
+    private Double mExpenseTotal = 0.0;
+    private Double mRecipeTotal = 0.0;
+    private Double mBalanceUser = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
         mTextSalutation = findViewById(R.id.textViewTitleContentHome);
         mCalendarView = findViewById(R.id.calendarViewContentHome);
         configCalendarView();
+        recoverAbstract();
 
         /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +62,35 @@ public class HomeActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });*/
+    }
+
+    public void recoverAbstract(){
+        String emailUser = mAuthentication.getCurrentUser().getEmail();
+        String idUser = Base64Custom.encodeBase64(emailUser);
+        DatabaseReference userRef = mReferenceFirebase.child("user").child(idUser);
+
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                mExpenseTotal = user.getExpenseTotal();
+                mRecipeTotal = user.getRecipeTotal();
+                mBalanceUser = mRecipeTotal - mExpenseTotal;
+
+                DecimalFormat decimalFormat = new DecimalFormat("0.00");
+                String balanceFormated = decimalFormat.format(mBalanceUser);
+
+                mTextSalutation.setText("Olá, " + user.getName());
+                mTextValueBalance.setText("€ " + balanceFormated);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     @Override
@@ -61,7 +103,6 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.menuLogout:
-                mAuthentication = ConfigFirebase.getFirebaseAuthentication();
                 mAuthentication.signOut();
                 startActivity(new Intent(this, MainActivity.class));
                 finish();

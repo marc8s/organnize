@@ -30,5 +30,6 @@ Personalizar interface Home
 17) Validar preenchimento de campos das despesas
 18) Recuperar e validar despesa total
 19) Replicação do que foi feito em despesas para receitas
-20) Adição da biblioteca Material calendar View, para adicionar calendario personalizado na tela principal 
+20) Adição da biblioteca Material calendar View, para adicionar calendario personalizado na tela principal (https://github.com/prolificinteractive/material-calendarview)
 21) Implementação de menu de logout - Inclusão de um menu na toobar para exibição de Botão sair na home
+22) Exibição do saldo do usuário e da saudação na home
