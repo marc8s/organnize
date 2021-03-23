@@ -33,6 +33,8 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //getSupportActionBar().setTitle("Cadastro");
+
         mCampName = findViewById(R.id.editTextTextPersonNameRegister);
         mCampEmail = findViewById(R.id.editTextTextEmailAddressRegister);
         mCampPassword = findViewById(R.id.editTextTextPasswordRegister);

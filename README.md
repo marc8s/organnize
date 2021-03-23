@@ -4,7 +4,7 @@ Uma aplicação que organiza as movimentações financeiras usando como base as 
 
 # DOING
 
-Botão sair na toobar
+
 
 # TODO
 
@@ -31,3 +31,4 @@ Personalizar interface Home
 18) Recuperar e validar despesa total
 19) Replicação do que foi feito em despesas para receitas
 20) Adição da biblioteca Material calendar View, para adicionar calendario personalizado na tela principal 
+21) Implementação de menu de logout - Inclusão de um menu na toobar para exibição de Botão sair na home
