@@ -29,3 +29,4 @@ Personalizar interface Home
 15) Criação da classe DateCustom para exibir data atual como predefinição ao criar nova receita ou despesa
 16) Criação da classe transaction para salvar as transações no firebase - transações separas por id e por mês
 17) Validar preenchimento de campos das despesas
+18) Recuperar e validar despesa total
