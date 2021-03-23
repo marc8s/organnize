@@ -4,7 +4,7 @@ Uma aplicação que organiza as movimentações financeiras usando como base as 
 
 # DOING
 
-
+Listar movimentações
 
 # TODO
 
@@ -33,3 +33,4 @@ Personalizar interface Home
 20) Adição da biblioteca Material calendar View, para adicionar calendario personalizado na tela principal (https://github.com/prolificinteractive/material-calendarview)
 21) Implementação de menu de logout - Inclusão de um menu na toobar para exibição de Botão sair na home
 22) Exibição do saldo do usuário e da saudação na home
+23) Adição dos metodos onstart e onstop em HomeActivity para adicionar o listener e remover o listener 

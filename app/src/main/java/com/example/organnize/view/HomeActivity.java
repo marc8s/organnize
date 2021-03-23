@@ -36,6 +36,8 @@ public class HomeActivity extends AppCompatActivity {
     private TextView mTextSalutation, mTextValueBalance;
     private FirebaseAuth mAuthentication = ConfigFirebase.getFirebaseAuthentication();
     private DatabaseReference mReferenceFirebase = ConfigFirebase.getFirebaseDatabase();
+    private DatabaseReference mUserRef;
+    private ValueEventListener mValueEventListenerUser;
     private Double mExpenseTotal = 0.0;
     private Double mRecipeTotal = 0.0;
     private Double mBalanceUser = 0.0;
@@ -52,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         mTextSalutation = findViewById(R.id.textViewTitleContentHome);
         mCalendarView = findViewById(R.id.calendarViewContentHome);
         configCalendarView();
-        recoverAbstract();
+
 
         /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -64,12 +66,18 @@ public class HomeActivity extends AppCompatActivity {
         });*/
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        recoverAbstract();
+    }
+
     public void recoverAbstract(){
         String emailUser = mAuthentication.getCurrentUser().getEmail();
         String idUser = Base64Custom.encodeBase64(emailUser);
-        DatabaseReference userRef = mReferenceFirebase.child("user").child(idUser);
+        mUserRef = mReferenceFirebase.child("user").child(idUser);
 
-        userRef.addValueEventListener(new ValueEventListener() {
+        mValueEventListenerUser = mUserRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
@@ -125,5 +133,11 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mUserRef.removeEventListener(mValueEventListenerUser);
     }
 }

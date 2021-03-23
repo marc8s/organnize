@@ -60,6 +60,7 @@ public class ExpensesActivity extends AppCompatActivity {
             updateTotalExpense();
 
             mTransaction.save();
+            finish();
         }
 
     }

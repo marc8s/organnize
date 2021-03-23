@@ -58,6 +58,7 @@ public class RecipesActivity extends AppCompatActivity {
             updateTotalRecipe();
 
             mTransaction.save();
+            finish();
         }
 
     }
