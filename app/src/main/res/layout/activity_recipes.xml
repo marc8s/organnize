@@ -79,6 +79,7 @@
 
         android:layout_marginTop="64dp"
         android:clickable="true"
+        android:onClick="saveRecipe"
         android:src="@drawable/ic_bcheck"
         app:backgroundTint="@color/colorPrimaryReceita"
         app:layout_constraintLeft_toLeftOf="parent"

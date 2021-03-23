@@ -30,3 +30,4 @@ Personalizar interface Home
 16) Criação da classe transaction para salvar as transações no firebase - transações separas por id e por mês
 17) Validar preenchimento de campos das despesas
 18) Recuperar e validar despesa total
+19) Replicação do que foi feito em despesas para receitas
