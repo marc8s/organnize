@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"></androidx.constraintlayout.widget.ConstraintLayout>
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:orientation="vertical"
+        android:background="@color/purple_200"
+        tools:layout_editor_absoluteX="116dp"
+        tools:layout_editor_absoluteY="85dp">
+
+        <TextView
+            android:id="@+id/textViewTitleContentHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:text="@string/loading" />
+
+        <TextView
+            android:id="@+id/textViewValueBalance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:text="@string/zero" />
+
+        <TextView
+            android:id="@+id/textViewSubtitleContentHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:text="@string/balance" />
+    </LinearLayout>
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/calendarViewContentHome"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:mcv_tileSize="50dp"
+        app:mcv_showOtherDates="all"
+        app:mcv_selectionColor="#00F"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTransactions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

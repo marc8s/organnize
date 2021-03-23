@@ -4,8 +4,7 @@ Uma aplicação que organiza as movimentações financeiras usando como base as 
 
 # DOING
 
-
-Atualizar valores totais das transações mediante novas adições
+Botão sair na toobar
 
 # TODO
 
@@ -31,3 +30,4 @@ Personalizar interface Home
 17) Validar preenchimento de campos das despesas
 18) Recuperar e validar despesa total
 19) Replicação do que foi feito em despesas para receitas
+20) Adição da biblioteca Material calendar View, para adicionar calendario personalizado na tela principal 
