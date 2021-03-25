@@ -2,15 +2,6 @@
 
 Uma aplicação que organiza as movimentações financeiras usando como base as receitas e despesas para determinar o saldo do usuário.
 
-# DOING
-
-
-
-# TODO
-
-Personalizar interface Home
-
-# DONE
 1) Configuração do Firebase (realtime database e authentication)
 2) Inclusão da biblioteca material intro (https://github.com/heinrichreimer/material-intro)
 3) Inclusão dos Fragment Sliders iniciais
