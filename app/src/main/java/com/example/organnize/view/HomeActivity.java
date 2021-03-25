@@ -3,8 +3,10 @@ package com.example.organnize.view;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.organnize.adapter.AdapterTransaction;
 import com.example.organnize.config.ConfigFirebase;
 import com.example.organnize.helper.Base64Custom;
+import com.example.organnize.model.Transaction;
 import com.example.organnize.model.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -12,6 +14,8 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,18 +33,27 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
     private MaterialCalendarView mCalendarView;
     private TextView mTextSalutation, mTextValueBalance;
+
     private FirebaseAuth mAuthentication = ConfigFirebase.getFirebaseAuthentication();
     private DatabaseReference mReferenceFirebase = ConfigFirebase.getFirebaseDatabase();
+
     private DatabaseReference mUserRef;
     private ValueEventListener mValueEventListenerUser;
+
     private Double mExpenseTotal = 0.0;
     private Double mRecipeTotal = 0.0;
     private Double mBalanceUser = 0.0;
+
+    private RecyclerView mRecyclerView;
+    private AdapterTransaction mAdapterTransaction;
+    private List<Transaction> mTransactions = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +66,15 @@ public class HomeActivity extends AppCompatActivity {
         mTextValueBalance = findViewById(R.id.textViewValueBalance);
         mTextSalutation = findViewById(R.id.textViewTitleContentHome);
         mCalendarView = findViewById(R.id.calendarViewContentHome);
+        mRecyclerView = findViewById(R.id.recyclerViewTransactions);
         configCalendarView();
+
+        mAdapterTransaction = new AdapterTransaction(mTransactions, this);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setAdapter(mAdapterTransaction);
 
 
         /*FloatingActionButton fab = findViewById(R.id.fab);
