@@ -1,5 +1,6 @@
 package com.example.organnize.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -22,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.organnize.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -56,6 +59,7 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private AdapterTransaction mAdapterTransaction;
     private List<Transaction> mTransactions = new ArrayList<>();
+    private Transaction mTransaction;
     private DatabaseReference mTransactionRef;
     private String mMonthYearSelected;
 
@@ -110,10 +114,63 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-
+                deleteTransaction(viewHolder);
             }
         };
         new ItemTouchHelper(itemTouch).attachToRecyclerView(mRecyclerView);
+    }
+
+    public void deleteTransaction(RecyclerView.ViewHolder viewHolder){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("Excluir transação da conta");
+        alertDialog.setMessage("Você tem certeza que deseja realmente excluir essa transação?");
+        alertDialog.setCancelable(false);
+
+        alertDialog.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                int position = viewHolder.getAdapterPosition();
+                mTransaction = mTransactions.get(position);
+                String emailUser = mAuthentication.getCurrentUser().getEmail();
+                String idUser = Base64Custom.encodeBase64(emailUser);
+                mTransactionRef = mReferenceFirebase.child("transaction")
+                        .child(idUser)
+                        .child(mMonthYearSelected);
+
+                mTransactionRef.child(mTransaction.getmKey()).removeValue();
+                mAdapterTransaction.notifyItemRemoved(position);
+                updateBalance();
+            }
+        });
+        alertDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(HomeActivity.this,
+                        "Cancelado",
+                        Toast.LENGTH_SHORT).show();
+                //item arrastado mantido na lista
+                mAdapterTransaction.notifyDataSetChanged();
+            }
+        });
+
+        AlertDialog alert = alertDialog.create();
+        alert.show();
+
+
+    }
+
+    public void updateBalance(){
+        String emailUser = mAuthentication.getCurrentUser().getEmail();
+        String idUser = Base64Custom.encodeBase64(emailUser);
+        mUserRef = mReferenceFirebase.child("user").child(idUser);
+
+        if(mTransaction.getmType().equals("r")){
+            mRecipeTotal = mRecipeTotal - mTransaction.getmValue();
+            mUserRef.child("recipeTotal").setValue(mRecipeTotal);
+        }else if(mTransaction.getmType().equals("e")){
+            mExpenseTotal = mExpenseTotal - mTransaction.getmValue();
+            mUserRef.child("expenseTotal").setValue(mExpenseTotal);
+        }
     }
 
     public void recoverTransactions(){
@@ -128,6 +185,8 @@ public class HomeActivity extends AppCompatActivity {
                 mTransactions.clear();
                 for(DataSnapshot dados: snapshot.getChildren()){
                     Transaction transaction = dados.getValue(Transaction.class);
+                    //recupera o id gerado pelo firebase
+                    transaction.setmKey(dados.getKey());
                     mTransactions.add(transaction);
                 }
                 mAdapterTransaction.notifyDataSetChanged();

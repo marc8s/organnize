@@ -4,7 +4,7 @@ Uma aplicação que organiza as movimentações financeiras usando como base as 
 
 # DOING
 
-Utilizar swipe para deletar transações
+
 
 # TODO
 
@@ -37,3 +37,4 @@ Personalizar interface Home
 24) Configurar recyclerview para exibir movimentações
 25) Listagem de transações de acordo com o mes selecionado
 26) Inclusão do swipe nas transações
+27) Utilizar swipe para deletar transações
