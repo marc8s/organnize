@@ -4,7 +4,7 @@ Uma aplicação que organiza as movimentações financeiras usando como base as 
 
 # DOING
 
-
+Utilizar swipe para deletar transações
 
 # TODO
 
@@ -36,3 +36,4 @@ Personalizar interface Home
 23) Adição dos metodos onstart e onstop em HomeActivity para adicionar o listener e remover o listener 
 24) Configurar recyclerview para exibir movimentações
 25) Listagem de transações de acordo com o mes selecionado
+26) Inclusão do swipe nas transações

@@ -14,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -71,6 +72,7 @@ public class HomeActivity extends AppCompatActivity {
         mCalendarView = findViewById(R.id.calendarViewContentHome);
         mRecyclerView = findViewById(R.id.recyclerViewTransactions);
         configCalendarView();
+        swipe();
 
         mAdapterTransaction = new AdapterTransaction(mTransactions, this);
 
@@ -88,6 +90,30 @@ public class HomeActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });*/
+    }
+
+    public void swipe(){
+        ItemTouchHelper.Callback itemTouch = new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                int dragFlags = ItemTouchHelper.ACTION_STATE_IDLE;//inativo
+                //como vai ser o movimento - do começo para o fim ou do fim para o começo
+                int swiperFlags = ItemTouchHelper.START | ItemTouchHelper.END;
+
+                return makeMovementFlags(dragFlags, swiperFlags);
+            }
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+            }
+        };
+        new ItemTouchHelper(itemTouch).attachToRecyclerView(mRecyclerView);
     }
 
     public void recoverTransactions(){
