@@ -39,6 +39,7 @@ public class AdapterTransaction extends RecyclerView.Adapter<AdapterTransaction.
         holder.title.setText(transaction.getmDescription());
         holder.value.setText(String.valueOf(transaction.getmValue()));
         holder.category.setText(transaction.getmCategory());
+        holder.value.setTextColor(mContext.getResources().getColor(R.color.colorAccentReceita));
 
         if (transaction.getmType().equals("e")) {
             holder.value.setTextColor(mContext.getResources().getColor(R.color.colorAccentDespesa));

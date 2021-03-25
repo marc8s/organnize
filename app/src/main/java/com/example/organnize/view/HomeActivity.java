@@ -43,9 +43,10 @@ public class HomeActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuthentication = ConfigFirebase.getFirebaseAuthentication();
     private DatabaseReference mReferenceFirebase = ConfigFirebase.getFirebaseDatabase();
-
     private DatabaseReference mUserRef;
+
     private ValueEventListener mValueEventListenerUser;
+    private ValueEventListener mValueEventListenerTransaction;
 
     private Double mExpenseTotal = 0.0;
     private Double mRecipeTotal = 0.0;
@@ -54,6 +55,8 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private AdapterTransaction mAdapterTransaction;
     private List<Transaction> mTransactions = new ArrayList<>();
+    private DatabaseReference mTransactionRef;
+    private String mMonthYearSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,10 +90,28 @@ public class HomeActivity extends AppCompatActivity {
         });*/
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        recoverAbstract();
+    public void recoverTransactions(){
+        String emailUser = mAuthentication.getCurrentUser().getEmail();
+        String idUser = Base64Custom.encodeBase64(emailUser);
+        mTransactionRef = mReferenceFirebase.child("transaction")
+                .child(idUser)
+                .child(mMonthYearSelected);
+        mValueEventListenerTransaction = mTransactionRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                mTransactions.clear();
+                for(DataSnapshot dados: snapshot.getChildren()){
+                    Transaction transaction = dados.getValue(Transaction.class);
+                    mTransactions.add(transaction);
+                }
+                mAdapterTransaction.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void recoverAbstract(){
@@ -143,22 +164,39 @@ public class HomeActivity extends AppCompatActivity {
     public void addRecipe(View view){
         startActivity(new Intent(this, RecipesActivity.class));
     }
+
     public void addExpense(View view){
         startActivity(new Intent(this, ExpensesActivity.class));
     }
 
     public void configCalendarView(){
+
+        CalendarDay dateToday = mCalendarView.getCurrentDate();
+        //logica para recuperar mês 2 e similares como 02
+        String monthSelected = String.format("%02d", (dateToday.getMonth() + 1));
+        mMonthYearSelected = String.valueOf(monthSelected + "" + dateToday.getYear());
         mCalendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override
             public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
-
+                String monthSelected = String.format("%02d", (date.getMonth() + 1));
+                mMonthYearSelected = String.valueOf(monthSelected + "" + date.getYear());
+                //remove o evento anterior antes de adicionar um novo
+                mTransactionRef.removeEventListener(mValueEventListenerTransaction);
+                recoverTransactions();
             }
         });
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        recoverAbstract();
+        recoverTransactions();
+    }
+    @Override
     protected void onStop() {
         super.onStop();
         mUserRef.removeEventListener(mValueEventListenerUser);
+        mTransactionRef.removeEventListener(mValueEventListenerTransaction);
     }
 }
